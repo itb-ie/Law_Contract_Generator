@@ -1,6 +1,6 @@
 from template import *
 import subprocess
-import os
+import os, sys
 import docx
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt
@@ -9,6 +9,13 @@ import tkinter as tk
 from tkinter.ttk import *
 from tkinter import filedialog
 from ttkthemes import ThemedTk
+
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 
 # function that generates the doc file from the information entered in the GUI
 def generate():
@@ -293,7 +300,7 @@ style.configure("TButton", font=("Arial", 12, 'bold'), width=25)
 style.configure("TLabel", font=("Arial", 15), anchor=tk.W, width=30, foreground="darkblue")
 style.configure("TEntry", font=("Arial", 15), anchor=tk.W)
 
-title_image = tk.PhotoImage(file="doc-generator.gif")
+title_image = tk.PhotoImage(file=resource_path("doc-generator.gif"))
 lb = Label(master=window, image=title_image)
 lb.grid(row=0, pady=20, columnspan=3)
 
